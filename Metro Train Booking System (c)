@@ -1,0 +1,68 @@
+#include <stdio.h>
+
+int main() {
+    int choice = 0;
+    int source = -1, destination = -1;
+    int fare = 0;
+    int booked = 0;
+
+    do {
+        printf("\n==== Metro Booking ====\n");
+        printf("1. View Stations\n");
+        printf("2. Book Ticket\n");
+        printf("3. Ticket Details\n");
+        printf("4. Calculate Fare\n");
+        printf("5. Exit\n");
+
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("Stations: A B C D E\n");
+                break;
+
+            case 2:
+                printf("Enter source (1-5): ");
+                scanf("%d", &source);
+
+                printf("Enter destination (1-5): ");
+                scanf("%d", &destination);
+
+                if (source >= 1 && source <= 5 && destination >= 1 && destination <= 5) {
+                    booked = 1;
+                    printf("Booked Successfully\n");
+                } else {
+                    printf("Invalid Input\n");
+                }
+                break;
+
+            case 3:
+                if (booked) {
+                    printf("From %d to %d\n", source, destination);
+                } else {
+                    printf("No booking found\n");
+                }
+                break;
+
+            case 4:
+                if (booked) {
+                    int distance = source > destination ? source - destination : destination - source;
+                    fare = distance * 10;
+                    printf("Total Fare = %d\n", fare);
+                } else {
+                    printf("Please book first\n");
+                }
+                break;
+
+            case 5:
+                printf("Thank you!\n");
+                break;
+
+            default:
+                printf("Wrong choice\n");
+        }
+
+    } while (choice != 5);
+
+    return 0;
+}
